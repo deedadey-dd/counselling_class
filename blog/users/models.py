@@ -8,7 +8,10 @@ class Network(models.Model):
     network = models.CharField(max_length=100)
     network_pastor = models.CharField(max_length=100)
     network_email = models.EmailField()
+:wqii:wq
 
+:wq
+:quit()
 
 class Counselee(AbstractUser):
     # username = models.OneToOneField(User, on_delete=models.CASCADE)
