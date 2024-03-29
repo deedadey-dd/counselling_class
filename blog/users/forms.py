@@ -12,8 +12,10 @@ class CounseleeRegisterForm(forms.ModelForm):
     class Meta:
         model = Counselee
         fields = ['username', 'password1', 'password2', 'firstname', 'lastname', 'othernames', 'date_of_birth',
-                  'gender', 'phone_number', 'email', 'hometown']
-        # add 'network' to the list above
+                  'gender', 'phone_number', 'network', 'email', 'hometown']
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'})
+        }
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

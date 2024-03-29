@@ -2,16 +2,24 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Permission, Group
 from PIL import Image
 
+
 # Create your models here.
 
-class Network(models.Model):
-    network = models.CharField(max_length=100)
+
+class Network(AbstractUser):
+    network_name = models.CharField(max_length=100)
     network_pastor = models.CharField(max_length=100)
     network_email = models.EmailField()
-:wqii:wq
 
-:wq
-:quit()
+    groups = models.ManyToManyField(Group, related_name='network_groups')
+    user_permissions = models.ManyToManyField(Permission, related_name='network_user_permissions')
+
+    def __str__(self):
+        return self.username  # Display the username when the object is printed
+
+    class Meta:
+        verbose_name = "Network"
+
 
 class Counselee(AbstractUser):
     # username = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -29,9 +37,9 @@ class Counselee(AbstractUser):
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
     hometown = models.CharField(max_length=50)
-    # network = models.ForeignKey(Network, on_delete=models.CASCADE, blank=True, null=True)
+    network = models.ForeignKey(Network, on_delete=models.CASCADE, blank=True, null=True)
     registration_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('approved', 'Approved'),
-                                                                   ('rejected', 'Rejected')])
+                                                                   ('rejected', 'Rejected')], default='pending')
 
     groups = models.ManyToManyField(Group, related_name='counselees')
     user_permissions = models.ManyToManyField(Permission, related_name='counselees')
@@ -48,3 +56,6 @@ class Counselee(AbstractUser):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+    class Meta:
+        verbose_name = "Counselee"
