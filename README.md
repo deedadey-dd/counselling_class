@@ -1,34 +1,20 @@
-So this is the final decision.
+This application is for online Pre-Marital Counselling by an organization for its members (counselees) accross different branches (networks).
+These networks are headed by the network in-charges (pastors). Other Roles are the Counselor, the Administrator and the Assistants.
 
-I want to send the confirmation email to the students however their account will lead to a page that tells 
-them to wait for confirmation from their teacher. On the teacher's dashboard, 
-the student's details will appear for the teacher to approve them. 
+OVERVIEW
+A. A counselee Registers on the site and must be approved by their pastor. 
 
-After the teacher's approval, the student will be allowed to view other pages. 
+B. After the approval, the counselee is given a list of Lab Tests to undergo and upload results. 
 
+C. Upon uploading of Lab results, the counselee is given the orientation videos to watch
+    Counselee must confirm that they have watched the full video.
+    
+D. Counselee is then promoted to Session or Level 1 of Counselling.
+  D. 1. Counselee is given a set of questions to answer and Submit (INITIAL VIEWS)
+  D. 2. Counselee is then given videos that explain the concepts in the questions in D. 1. to watch
+  D. 3. Counselee is presented with the same questions to re-answer and Submit (NEW UNDERSTANDING)
+  D. 4. Counselee is given MCQs to answer as proof of understanding - 100% score upon submission means promotion to next Session or Level
+  --new level starts at D.
 
-That sounds like a well-thought-out workflow! Here's how you can implement it in Django:
+E. After the final Session, All user's answers are compiled into a PDF for Counselee to download.
 
-Send Confirmation Email to Students: When a student registers, send a confirmation email to the student's email address. 
-The email should include a message indicating that their registration is pending approval from their teacher.
-
-Student Account Page: Create a page for student accounts where they can log in and view their account details. 
-On this page, display a message informing them that their account is pending approval from their teacher.
-
-Teacher Dashboard: Create a dashboard for teachers where they can view pending student registrations. 
-This dashboard should display the details of each student who has registered and provide options for the 
-teacher to approve or reject each registration.
-
-Approval Workflow: Implement the approval workflow so that when a teacher approves a student registration, 
-the student's account status is updated to approved. This can be done by updating a field in the Student 
-model to indicate the approval status.
-
-Allow Student Access: Once a student's registration is approved by their teacher, they should be allowed 
-to access other pages on the site. You can implement logic in your views to check the approval status of 
-the student's account before granting access to certain pages.
-
-By following these steps, you can create a workflow where students receive confirmation emails upon registration, 
-their accounts are pending approval from their teacher until approval is granted, and they can access other pages 
-on the site once their registration is approved. 
-This approach ensures that students are informed about the status of their registration and allows teachers 
-to easily manage and approve student registrations.
